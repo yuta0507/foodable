@@ -57,7 +57,7 @@
         <div class="input-group mb-3">
             <input type="password" name="password_confirmation"
                    class="form-control @error('password_confirmation') is-invalid @enderror"
-                   placeholder="{{ trans('adminlte::adminlte.retype_password') }}">
+                   placeholder="{{ trans('adminlte::adminlte.confirm_password') }}">
 
             <div class="input-group-append">
                 <div class="input-group-text">

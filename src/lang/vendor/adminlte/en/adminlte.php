@@ -5,7 +5,7 @@ return [
     'full_name'                   => 'Full name',
     'email'                       => 'Email',
     'password'                    => 'Password',
-    'retype_password'             => 'Retype password',
+    'confirm_password'             => 'Confirm password',
     'remember_me'                 => 'Remember Me',
     'register'                    => 'Register',
     'register_a_new_membership'   => 'Register a new membership',
