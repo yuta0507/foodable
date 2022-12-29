@@ -3,7 +3,7 @@
 @section('title', 'Profile')
 
 @if (session('message'))
-    @section('adminlte_css_pre')
+    @section('adminlte_css')
         <link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.min.css') }}">
     @endsection
 @endif
