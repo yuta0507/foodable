@@ -104,6 +104,9 @@
         @endif
     @endif
 
+    {{-- Custom Css Styles --}}
+    @stack('css')
+
     {{-- Custom Scripts --}}
     @yield('adminlte_js')
 
