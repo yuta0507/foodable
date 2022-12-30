@@ -313,7 +313,7 @@ return [
         ],
         [
             'text'        => 'Home',
-            'url'         => 'dashboard',
+            'url'         => 'restaurants',
             'icon'        => 'fas fa-fw fa-home',
         ],
         [
