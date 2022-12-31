@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Home')
 
 @section('content_header')
     <h1>Your favorites</h1>
@@ -20,16 +20,29 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>URL</th>
-                                <th>Takeaway</th>
+                                <th>Genre</th>
                                 <th>Your review</th>
                                 <th>Google's review</th>
+                                <th>Takeaway</th>
+                                <th>URL</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($restaurants as $item)
                                 <tr>
                                     <td>{{ $item->name }}</td>
+                                    <td>{{ $item->genre }}</td>
+                                    <td>☆{{ $item->user_review }}</td>
+                                    <td>☆{{ $item->google_review }}</td>
+                                    <td>
+                                        @if ($item->takeaway_flag === App\Enums\TakeawayFlag::Possible->value)
+                                        ⚪︎
+                                        @elseif ($item->takeaway_flag === App\Enums\TakeawayFlag::Impossible->value)
+                                        ✖︎
+                                        @else
+                                        -
+                                        @endif
+                                    </td>
                                     <td>
                                         @if ($item->url)
                                             <a href="{{ $item->url }}" target="_blank" rel="noopener" style="color: black">
@@ -37,17 +50,6 @@
                                             </a>
                                         @endif
                                     </td>
-                                    <td>
-                                        @if ($item->takeaway_flag === App\Enums\TakeawayFlag::Possible->value)
-                                            <i class="fa fa-check" aria-hidden="true"></i>
-                                        @elseif ($item->takeaway_flag === App\Enums\TakeawayFlag::Impossible->value)
-                                            <i class="fa fa-times" aria-hidden="true"></i>
-                                        @else
-                                            -
-                                        @endif
-                                    </td>
-                                    <td><i class="fa fa-star"></i>{{ $item->user_review }}</td>
-                                    <td><i class="fa fa-star" aria-hidden="true"></i>{{ $item->google_review }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
