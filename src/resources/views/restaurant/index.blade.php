@@ -25,18 +25,19 @@
                                 <th>Google's review</th>
                                 <th>Takeaway</th>
                                 <th>URL</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($restaurants as $item)
                                 <tr>
-                                    <td>{{ $item->name }}</td>
+                                    <td><a href="{{ route('restaurants.edit', $item->id) }}" style="color: black">{{ $item->name }}</a></td>
                                     <td>{{ $item->genre }}</td>
                                     <td>☆{{ $item->user_review }}</td>
                                     <td>☆{{ $item->google_review }}</td>
                                     <td>
                                         @if ($item->takeaway_flag === App\Enums\TakeawayFlag::Possible->value)
-                                        ⚪︎
+                                        ○
                                         @elseif ($item->takeaway_flag === App\Enums\TakeawayFlag::Impossible->value)
                                         ✖︎
                                         @else
@@ -49,6 +50,15 @@
                                                 <i class="fa fa-link"></i>
                                             </a>
                                         @endif
+                                    </td>
+                                    <td>
+                                        <form action="{{ route('restaurants.destroy', $item->id) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" onclick="return confirm('Are you sure to delete?')">
+                                                <i class="fa fa-trash" aria-hidden="true" style="color: mediumvioletred;"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
