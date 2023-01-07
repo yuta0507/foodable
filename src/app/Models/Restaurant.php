@@ -23,7 +23,7 @@ class Restaurant extends Model
     public function scopeByUserId($query): Builder
     {
         return $query->select(
-                'name', 'genre', 'url', 'takeaway_flag', 'user_review', 'google_review', 'created_at'
+                'id', 'name', 'genre', 'url', 'takeaway_flag', 'user_review', 'google_review', 'created_at'
             )
             ->where('user_id', '=', Auth::id())
             ;

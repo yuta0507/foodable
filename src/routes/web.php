@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RestaurantsController;
+use App\Http\Controllers\RestaurantController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,7 +24,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::resource('restaurants', RestaurantsController::class);
+    Route::resource('restaurants', RestaurantController::class)->except(['show']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
