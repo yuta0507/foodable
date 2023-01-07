@@ -11,6 +11,9 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Manage your favorites</h3>
+                <a class="btn btn-sm btn-outline-dark float-right" href="{{ route('restaurants.create') }}">
+                    <i class="fa fa-plus" aria-hidden="true">Add</i>
+                </a>
             </div>
             <div class="card-body">
                 @if ($restaurants->isEmpty())

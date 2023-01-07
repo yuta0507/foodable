@@ -13,6 +13,21 @@ class RestaurantController extends Controller
         return view('restaurant.index', compact('restaurants'));
     }
 
+    public function create()
+    {
+        return view('restaurant.create');
+    }
+
+    public function store()
+    {
+
+    }
+
+    public function edit(int $id)
+    {
+
+    }
+
     public function destroy(int $id)
     {
         Restaurant::destroy($id);
