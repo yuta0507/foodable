@@ -25,4 +25,16 @@ class RestaurantRequest extends FormRequest
             'url' => ['max:255'],
         ];
     }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'takeaway_flag' => 'takeaway',
+        ];
+    }
 }
