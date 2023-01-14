@@ -12,7 +12,14 @@ class Restaurant extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'name',
+        'genre',
+        'url',
+        'takeaway_flag',
+        'user_review',
+        'google_review',
+    ];
 
     /**
      * Scope a query to fetch restaurants by user_id
