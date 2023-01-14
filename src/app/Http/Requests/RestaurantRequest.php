@@ -19,6 +19,7 @@ class RestaurantRequest extends FormRequest
         return [
             'name' => ['required', 'max:255'],
             'genre' => ['required', 'max:255'],
+            'area' => ['required', 'max:255'],
             'user_review' => [new ReviewRule],
             'google_review' => [new ReviewRule],
             'takeaway_flag' => ['required', Rule::in(array_column(TakeawayFlag::cases(), 'value'))],
