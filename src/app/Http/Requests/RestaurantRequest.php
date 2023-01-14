@@ -3,12 +3,11 @@
 namespace App\Http\Requests;
 
 use App\Enums\TakeawayFlag;
-use App\Models\User;
 use App\Rules\ReviewRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class MakerRequest extends FormRequest
+class RestaurantRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -24,6 +23,18 @@ class MakerRequest extends FormRequest
             'google_review' => [new ReviewRule],
             'takeaway_flag' => ['required', Rule::in(array_column(TakeawayFlag::cases(), 'value'))],
             'url' => ['max:255'],
+        ];
+    }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'takeaway_flag' => 'takeaway',
         ];
     }
 }

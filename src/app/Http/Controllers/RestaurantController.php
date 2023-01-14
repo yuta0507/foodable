@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\MakerRequest;
+use App\Http\Requests\RestaurantRequest;
 use App\Models\Restaurant;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -21,12 +22,20 @@ class RestaurantController extends Controller
         return view('restaurant.create');
     }
 
-    public function store(MakerRequest $request)
+    public function store(RestaurantRequest $request)
     {
         try {
             DB::beginTransaction();
 
-            Restaurant::create($request->all());
+            Restaurant::create([
+                'user_id' => Auth::id(),
+                'name' => $request->name,
+                'genre' => $request->genre,
+                'user_review' => $request->user_review,
+                'google_review' => $request->google_review,
+                'takeaway_flag' => $request->takeaway_flag,
+                'url' => $request->url,
+            ]);
 
             DB::commit();
         }
@@ -41,7 +50,9 @@ class RestaurantController extends Controller
                 ;
         }
 
-        return redirect()->route('restaurants.index');
+        return redirect()
+            ->route('restaurants.index')
+            ->with('message', config('message.store.success'));
     }
 
     public function edit(int $id)

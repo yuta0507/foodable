@@ -8,7 +8,7 @@
     @php( $dashboard_url = $dashboard_url ? url($dashboard_url) : '' )
 @endif
 
-@section('adminlte_css')
+@section('css')
     @stack('css')
     @yield('css')
 @stop
@@ -75,7 +75,7 @@
     </div>
 @stop
 
-@section('adminlte_js')
+@section('js')
     @stack('js')
     @yield('js')
 @stop
