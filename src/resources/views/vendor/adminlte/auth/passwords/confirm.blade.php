@@ -1,6 +1,6 @@
 @extends('adminlte::master')
 
-@section('adminlte_css')
+@section('css')
     @yield('css')
 @stop
 
@@ -82,7 +82,7 @@
     </div>
 @stop
 
-@section('adminlte_js')
+@section('js')
     @stack('js')
     @yield('js')
 @stop

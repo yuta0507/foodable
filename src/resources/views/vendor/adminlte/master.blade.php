@@ -20,7 +20,7 @@
     </title>
 
     {{-- Custom stylesheets (pre AdminLTE) --}}
-    @yield('adminlte_css_pre')
+    @yield('css_pre')
 
     {{-- Base Stylesheets --}}
     @if(!config('adminlte.enabled_laravel_mix'))
@@ -49,7 +49,7 @@
     @endif
 
     {{-- Custom Stylesheets (post AdminLTE) --}}
-    @yield('adminlte_css')
+    @yield('css')
 
     {{-- Favicon --}}
     @if(config('adminlte.use_ico_only'))
@@ -73,6 +73,8 @@
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="{{ asset('favicon/ms-icon-144x144.png') }}">
     @endif
+
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
 </head>
 
@@ -109,7 +111,7 @@
 
     {{-- Custom Scripts --}}
     @stack('js')
-    @yield('adminlte_js')
+    @yield('js')
 
 </body>
 
