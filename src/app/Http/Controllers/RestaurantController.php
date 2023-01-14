@@ -34,7 +34,11 @@ class RestaurantController extends Controller
             DB::rollBack();
             Log::error($e);
 
-            return redirect()->route('restaurants.create')->with('internal_error', 'An error occurred. Please try again.');
+            return redirect()
+                ->route('restaurants.create')
+                ->with('internal_error', config('message.internal_error'))
+                ->withInput()
+                ;
         }
 
         return redirect()->route('restaurants.index');
@@ -51,7 +55,6 @@ class RestaurantController extends Controller
             DB::beginTransaction();
 
             Restaurant::destroy($id);
-            throw new \Exception;
 
             DB::commit();
         }
@@ -59,7 +62,10 @@ class RestaurantController extends Controller
             DB::rollBack();
             Log::error($e);
 
-            return redirect()->route('restaurants.index')->with('internal_error', 'An error occurred. Please try again.');
+            return redirect()
+                ->route('restaurants.index')
+                ->with('internal_error', config('restaurants.internal_error'))
+                ;
         }
 
         return redirect()->route('restaurants.index');
