@@ -6,6 +6,8 @@
     <h1>Your favorites</h1>
 @stop
 
+@include('components.flash-message')
+
 @section('content')
     <div class="col-12">
         <div class="card">
