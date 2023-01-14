@@ -65,3 +65,13 @@
     </div>
 </div>
 @endsection
+
+@if (session('internal_error'))
+@push('js')
+<script>
+    const alert_msg = '{{ session('internal_error') }}';
+
+    alert(alert_msg);
+</script>
+@endpush
+@endif

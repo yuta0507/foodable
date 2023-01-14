@@ -108,6 +108,7 @@
     @stack('css')
 
     {{-- Custom Scripts --}}
+    @stack('js')
     @yield('adminlte_js')
 
 </body>

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MakerRequest;
 use App\Models\Restaurant;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class RestaurantController extends Controller
 {
@@ -18,9 +21,23 @@ class RestaurantController extends Controller
         return view('restaurant.create');
     }
 
-    public function store()
+    public function store(MakerRequest $request)
     {
+        try {
+            DB::beginTransaction();
 
+            Restaurant::create($request->all());
+
+            DB::commit();
+        }
+        catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e);
+
+            return redirect()->route('restaurants.create')->with('internal_error', 'An error occurred. Please try again.');
+        }
+
+        return redirect()->route('restaurants.index');
     }
 
     public function edit(int $id)
@@ -30,7 +47,20 @@ class RestaurantController extends Controller
 
     public function destroy(int $id)
     {
-        Restaurant::destroy($id);
+        try {
+            DB::beginTransaction();
+
+            Restaurant::destroy($id);
+            throw new \Exception;
+
+            DB::commit();
+        }
+        catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e);
+
+            return redirect()->route('restaurants.index')->with('internal_error', 'An error occurred. Please try again.');
+        }
 
         return redirect()->route('restaurants.index');
     }
