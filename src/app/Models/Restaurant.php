@@ -16,6 +16,7 @@ class Restaurant extends Model
         'user_id',
         'name',
         'genre',
+        'area',
         'url',
         'takeaway_flag',
         'user_review',
@@ -28,10 +29,10 @@ class Restaurant extends Model
      * @param  \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeByUserId($query): Builder
+    public function scopeByUserId(Builder $query): Builder
     {
         return $query->select(
-                'id', 'name', 'genre', 'url', 'takeaway_flag', 'user_review', 'google_review', 'created_at'
+                'id', 'name', 'genre', 'area', 'url', 'takeaway_flag', 'user_review', 'google_review', 'created_at'
             )
             ->where('user_id', '=', Auth::id())
             ;

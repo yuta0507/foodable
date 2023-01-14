@@ -41,6 +41,17 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="genre">Area</label>
+                        <input
+                            type="text" name="area" maxlength="255" value="{{ old('area') ?? $restaurant->area }}"
+                            class="form-control form-control-border border-width-2 {{ $errors->first('area') ? 'is-invalid' : '' }}"
+                        >
+                        @if ($errors->first('area'))
+                            <span class="error">{{ $errors->first('area') }}</span>
+                        @endif
+                    </div>
+
+                    <div class="form-group">
                         <label for="user_review">Your review</label>
                         <input
                             type="number" name="user_review" value="{{ old('user_review') ?? $restaurant->user_review }}" min="0" step="0.1" max="5.0"

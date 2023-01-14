@@ -26,6 +26,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Genre</th>
+                                <th>Area</th>
                                 <th>Your review</th>
                                 <th>Google's review</th>
                                 <th>Takeaway</th>
@@ -38,6 +39,7 @@
                                 <tr>
                                     <td><a href="{{ route('restaurants.edit', $item->id) }}" style="color: black">{{ $item->name }}</a></td>
                                     <td>{{ $item->genre }}</td>
+                                    <td>{{ $item->area }}</td>
                                     <td>☆{{ $item->user_review }}</td>
                                     <td>☆{{ $item->google_review }}</td>
                                     <td>
