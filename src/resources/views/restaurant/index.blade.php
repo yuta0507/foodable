@@ -21,7 +21,7 @@
                 @if ($restaurants->isEmpty())
                     No data
                 @else
-                    <table class="table table-bordered table-hover dataTable dtr-inline">
+                    <table class="table table-hover text-nowrap">
                         <thead>
                             <tr>
                                 <th>Name</th>

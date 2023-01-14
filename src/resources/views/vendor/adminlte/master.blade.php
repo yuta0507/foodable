@@ -20,7 +20,7 @@
     </title>
 
     {{-- Custom stylesheets (pre AdminLTE) --}}
-    @yield('css_pre')
+    @yield('adminlte_css_pre')
 
     {{-- Base Stylesheets --}}
     @if(!config('adminlte.enabled_laravel_mix'))
@@ -49,7 +49,7 @@
     @endif
 
     {{-- Custom Stylesheets (post AdminLTE) --}}
-    @yield('css')
+    @yield('adminlte_css')
 
     {{-- Favicon --}}
     @if(config('adminlte.use_ico_only'))
@@ -106,12 +106,8 @@
         @endif
     @endif
 
-    {{-- Custom Css Styles --}}
-    @stack('css')
-
     {{-- Custom Scripts --}}
-    @stack('js')
-    @yield('js')
+    @yield('adminlte_js')
 
 </body>
 
