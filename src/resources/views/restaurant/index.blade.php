@@ -8,6 +8,10 @@
 
 @include('components.flash-message')
 
+@push('css')
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,600,0,0" />
+@endpush
+
 @section('content')
     <div class="col-12">
         <div class="card">
@@ -44,11 +48,17 @@
                                     <td>☆{{ $item->google_review }}</td>
                                     <td>
                                         @if ($item->takeaway_flag === App\Enums\TakeawayFlag::Possible->value)
-                                        ○
+                                            <span class="material-symbols-outlined">
+                                                circle
+                                            </span>
                                         @elseif ($item->takeaway_flag === App\Enums\TakeawayFlag::Impossible->value)
-                                        ✖︎
+                                            <span class="material-symbols-outlined">
+                                                close
+                                            </span>
                                         @else
-                                        -
+                                            <span class="material-symbols-outlined">
+                                                remove
+                                            </span>
                                         @endif
                                     </td>
                                     <td>
@@ -103,6 +113,9 @@
     }
     .pagination {
         margin-bottom: 0px;
+    }
+    .material-symbols-outlined {
+        font-size: 16px
     }
 </style>
 @endpush
