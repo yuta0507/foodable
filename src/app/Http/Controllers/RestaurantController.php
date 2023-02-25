@@ -14,11 +14,13 @@ class RestaurantController extends Controller
     /**
      * Display a listing of restaurants
      */
-    public function index()
+    public function index(Request $request)
     {
-        $restaurants = Restaurant::byUserId()->paginate(15);
+        $search = $request->only(['your_review', 'google_review']);
 
-        return view('restaurant.index', compact('restaurants'));
+        $restaurants = Restaurant::byUserId()->search($search)->paginate(15);
+
+        return view('restaurant.index', compact('restaurants', 'search'));
     }
 
     /**

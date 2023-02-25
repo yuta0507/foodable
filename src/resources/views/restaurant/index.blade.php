@@ -28,8 +28,28 @@
                                 <th>Name</th>
                                 <th>Genre</th>
                                 <th>Area</th>
-                                <th>Your review</th>
-                                <th>Google's review</th>
+                                <th>
+                                    @php
+                                        $sort_your_review = new App\Services\View\SortService($search, 'your_review');
+                                    @endphp
+                                    <a href="{{ route('restaurant.index', $sort_your_review->getSearch()) }}" style="color: #212529">
+                                        Your review
+                                        <span class="material-symbols-outlined">
+                                            {{ $sort_your_review->getGoogleFontName() }}
+                                        </span>
+                                    </a>
+                                </th>
+                                <th>
+                                    @php
+                                        $sort_google_review = new App\Services\View\SortService($search, 'google_review');
+                                    @endphp
+                                    <a href="{{ route('restaurant.index', $sort_google_review->getSearch()) }}" style="color: #212529">
+                                        Google's review
+                                        <span class="material-symbols-outlined">
+                                            {{ $sort_google_review->getGoogleFontName() }}
+                                        </span>
+                                    </a>
+                                </th>
                                 <th>Takeaway</th>
                                 <th>URL</th>
                                 <th>Delete</th>
