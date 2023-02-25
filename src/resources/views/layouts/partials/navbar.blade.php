@@ -19,14 +19,15 @@
                 <span>Yuta Kikkawa</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <li class="user-footer">
-                    <a href="{{ route('profile.edit') }}" class="btn-default">
+                <li>
+                    <a href="{{ route('profile.edit') }}" class="btn-default dropdown-item">
                         <i class="fa fa-fw fa-user"></i>
                         Profile
                     </a>
+                    <div class="dropdown-divider"></div>
                 </li>
-                <li class="user-footer">
-                    <a class="btn-default" href="#"
+                <li>
+                    <a class="btn-default dropdown-item" href="#"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="fa fa-fw fa-power-off"></i>
                         Log Out
@@ -39,3 +40,15 @@
         </li>
     </ul>
 </nav>
+
+@push('style')
+    <style>
+        .navbar-nav > .user-menu > .dropdown-menu {
+            width: 200px;
+        }
+
+        .dropdown-menu-lg {
+            min-width: 200px;
+        }
+    </style>
+@endpush
