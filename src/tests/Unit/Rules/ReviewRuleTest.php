@@ -7,6 +7,9 @@ use Tests\TestCase;
 
 class ReviewRuleTest extends TestCase
 {
+    /**
+     * Test true cases
+     */
     public function testTrueCases()
     {
         $rule = new ReviewRule;
@@ -18,6 +21,9 @@ class ReviewRuleTest extends TestCase
         }
     }
 
+    /**
+     * Test false cases
+     */
     public function testFalseCases()
     {
         $rule = new ReviewRule;

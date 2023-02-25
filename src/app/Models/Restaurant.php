@@ -31,10 +31,45 @@ class Restaurant extends Model
      */
     public function scopeByUserId(Builder $query): Builder
     {
-        return $query->select(
-                'id', 'name', 'genre', 'area', 'url', 'takeaway_flag', 'user_review', 'google_review', 'created_at'
+        return $query
+            ->select(
+                'id',
+                'name',
+                'genre',
+                'area',
+                'url',
+                'takeaway_flag',
+                'user_review',
+                'google_review'
             )
             ->where('user_id', '=', Auth::id())
             ;
+    }
+
+    /**
+     * Scope a query to search restaurants by request parameters
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSearch(Builder $query, array $request): Builder
+    {
+        if (! empty($request['your_review'])) {
+            if ($request['your_review'] === 'desc') {
+                $query->orderBy('user_review', 'desc');
+            } else {
+                $query->orderBy('user_review', 'asc');
+            }
+        }
+
+        if (! empty($request['google_review'])) {
+            if ($request['google_review'] === 'desc') {
+                $query->orderBy('google_review', 'desc');
+            } else {
+                $query->orderBy('google_review', 'asc');
+            }
+        }
+
+        return $query;
     }
 }
