@@ -3,7 +3,7 @@
 namespace Tests\Unit\Rules;
 
 use App\Rules\ReviewRule;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class ReviewRuleTest extends TestCase
 {
