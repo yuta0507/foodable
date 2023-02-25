@@ -1,8 +1,6 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 
 @section('title', 'Profile')
-
-@include('components.flash-message')
 
 @section('content_header')
     <h1>Profile Settings</h1>

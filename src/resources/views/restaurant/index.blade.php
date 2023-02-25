@@ -1,4 +1,4 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 
 @section('title', 'Home')
 
@@ -6,10 +6,8 @@
     <h1>Your favorites</h1>
 @stop
 
-@include('components.flash-message')
-
-@push('css')
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,600,0,0" />
+@push('link')
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,600,0,0" />
 @endpush
 
 @section('content')
@@ -17,7 +15,7 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Manage your favorites</h3>
-                <a class="btn btn-sm btn-outline-dark float-right" href="{{ route('restaurants.create') }}">
+                <a class="btn btn-sm btn-outline-dark float-right" href="{{ route('restaurant.create') }}">
                     <i class="fa fa-plus" aria-hidden="true">Add</i>
                 </a>
             </div>
@@ -41,7 +39,7 @@
                         <tbody>
                             @foreach ($restaurants as $item)
                                 <tr>
-                                    <td><a href="{{ route('restaurants.edit', $item->id) }}" style="color: black">{{ $item->name }}</a></td>
+                                    <td><a href="{{ route('restaurant.edit', $item->id) }}" style="color: black">{{ $item->name }}</a></td>
                                     <td>{{ $item->genre }}</td>
                                     <td>{{ $item->area }}</td>
                                     <td>☆{{ $item->user_review }}</td>
@@ -69,7 +67,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <form action="{{ route('restaurants.destroy', $item->id) }}" method="post">
+                                        <form action="{{ route('restaurant.destroy', $item->id) }}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" onclick="return confirm('Are you sure to delete?')">
@@ -89,33 +87,23 @@
             </div>
         </div>
     </div>
-@stop
+@endsection
 
-@if (session('internal_error'))
-@push('js')
-<script>
-    const alert_msg = '{{ session('internal_error') }}';
-
-    alert(alert_msg);
-</script>
-@endpush
-@endif
-
-@push('css')
-<style>
-    .paginator {
-        margin-top: 10px;
-        display: flex;
-        justify-content: space-between;
-    }
-    .paginator > .result {
-        padding-top: 6px;
-    }
-    .pagination {
-        margin-bottom: 0px;
-    }
-    .material-symbols-outlined {
-        font-size: 16px
-    }
-</style>
+@push('style')
+    <style>
+        .paginator {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .paginator > .result {
+            padding-top: 6px;
+        }
+        .pagination {
+            margin-bottom: 0px;
+        }
+        .material-symbols-outlined {
+            font-size: 16px
+        }
+    </style>
 @endpush

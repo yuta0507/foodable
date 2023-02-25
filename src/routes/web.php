@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', [RestaurantController::class, 'index']);
-    Route::resource('restaurants', RestaurantController::class)->except(['show']);
+    Route::get('/', [RestaurantController::class, 'index'])->name('home');
+    Route::resource('restaurant', RestaurantController::class)->except(['show']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
