@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'Profile')
-
 @section('content_header')
     <h1>Profile Settings</h1>
 @stop

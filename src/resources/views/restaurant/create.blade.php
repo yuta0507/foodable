@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'Restaurants')
-
 @section('content_header')
     <h1>Your favorite</h1>
 @endsection

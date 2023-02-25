@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
-
 @section('content_header')
     <h1>Your favorites</h1>
 @stop
