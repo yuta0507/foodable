@@ -1,35 +1,57 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="en">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name') }}</title>
+    <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+    @if (session('message'))
+        <link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.min.css') }}">
+    @endif
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+    @stack('link')
+</head>
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+<body class="sidebar-mini">
+    <div class="wrapper">
+        @include('layouts.partials.navbar')
+        @include('layouts.partials.sidebar')
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+        <div class="content-wrapper">
+            <div class="content-header">
+                <div class="container-fluid">
+                    <h1>@yield('content_header')</h1>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="container-fluid">
+                    @yield('content')
+                </div>
+            </div>
         </div>
-    </body>
+    </div>
+
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js') }}"></script>
+
+    @if (session('message'))
+        <script src="{{ asset('vendor/toastr/toastr.min.js') }}"></script>
+        <script>
+            toastr.success('{{ session('message') }}')
+        </script>
+    @endif
+
+    @stack('script')
+    @stack('style')
+</body>
+
 </html>

@@ -51,7 +51,7 @@ class RestaurantController extends Controller
             Log::error($e, ['request' => $request->all()]);
 
             return redirect()
-                ->route('restaurants.create')
+                ->route('restaurant.create')
                 ->with('internal_error', config('message.internal_error'))
                 ->withInput()
                 ;
@@ -90,7 +90,7 @@ class RestaurantController extends Controller
             Log::error($e, ['request' => $request->all()]);
 
             return redirect()
-                ->route('restaurants.edit')
+                ->route('restaurant.edit')
                 ->with('internal_error', config('restaurants.internal_error'))
                 ->withInput()
                 ;
