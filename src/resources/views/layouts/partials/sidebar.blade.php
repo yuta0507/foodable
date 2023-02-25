@@ -13,7 +13,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
                 <li class="nav-item">
                     <a
-                        class="nav-link @if (request()->is('/') || request()->is('restaurants')) active @endif"
+                        class="nav-link @if (request()->is('/') || request()->is('restaurant')) active @endif"
                         href="{{ route('home') }}"
                     >
                         <i class="fas fa-fw fa-home"></i>
