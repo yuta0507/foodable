@@ -21,6 +21,7 @@
                 @if ($restaurants->isEmpty())
                     No data
                 @else
+                <div class="table-responsive">
                     <table class="table table-hover text-nowrap">
                         <thead>
                             <tr>
@@ -77,6 +78,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div>
                 @endif
                 <div class="paginator">
                     <div class="result">Showing {{ $restaurants->firstItem() }} to {{ $restaurants->lastItem() }} of  {{ $restaurants->total() }} entries</div>
