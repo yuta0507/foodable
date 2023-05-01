@@ -69,6 +69,14 @@ class Restaurant extends Model
             }
         }
 
+        if (! empty($request['search'])) {
+            $query->where(function ($q) use ($request) {
+                $q->where('name', '=', $request['search'])
+                    ->orWhere('genre', '=', $request['search'])
+                    ->orWhere('area', '=', $request['search']);
+            });
+        }
+
         return $query;
     }
 }

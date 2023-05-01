@@ -22,6 +22,20 @@
                     No data
                 @else
                 <div class="table-responsive">
+                    <form action="{{ route('restaurant.index') }}" method="get">
+                        <div class="search input-group col-md-3 float-right">
+                            <input
+                                type="search" class="form-control" name="search" placeholder="Name / Genre / Area"
+                                value="{{ request()->input('search') }}"
+                            >
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
                     <table class="table table-hover text-nowrap">
                         <thead>
                             <tr>
@@ -124,6 +138,11 @@
         }
         .material-symbols-outlined {
             font-size: 16px
+        }
+
+        .search {
+            padding: 0;
+            margin-bottom: 10px;
         }
     </style>
 @endpush

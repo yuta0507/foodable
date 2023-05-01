@@ -16,7 +16,7 @@ class RestaurantController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->only(['your_review', 'google_review']);
+        $search = $request->only(['your_review', 'google_review', 'search']);
 
         $restaurants = Restaurant::byUserId()->search($search)->paginate(15);
 
