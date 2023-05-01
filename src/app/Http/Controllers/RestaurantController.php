@@ -72,6 +72,10 @@ class RestaurantController extends Controller
     {
         $restaurant = Restaurant::byUserId()->where('id', '=', $id)->first();
 
+        if (! $restaurant) {
+            abort(404);
+        }
+
         return view('restaurant.edit', compact('restaurant'));
     }
 
