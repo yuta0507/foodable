@@ -30,9 +30,7 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request)
     {
-        $request->user()->fill($request->validated());
-
-        $request->user()->save();
+        $request->user()->update($request->validated());
 
         return Redirect::route('profile.edit')
             ->with('message', config('message.update.success'))
