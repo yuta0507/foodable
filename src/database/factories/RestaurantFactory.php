@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
-class UserFactory extends Factory
+class RestaurantFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,9 +18,16 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
+            'user_id' => function () {
+                return User::factory()->create()->id;
+            },
             'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'password' => Hash::make('1234567890'),
+            'genre' => fake()->name(),
+            'area' => fake()->name(),
+            'url' => fake()->url(),
+            'takeaway_flag' => fake()->numberBetween(0, 2),
+            'user_review' => fake()->numberBetween(0, 5),
+            'google_review' => fake()->numberBetween(0, 5),
         ];
     }
 
