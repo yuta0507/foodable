@@ -21,98 +21,98 @@
                 @if ($restaurants->isEmpty())
                     No data
                 @else
-                <div class="table-responsive">
-                    <form action="{{ route('restaurant.index') }}" method="get">
-                        <div class="search input-group col-md-3 float-right">
-                            <input
-                                type="search" class="form-control" name="search" placeholder="Name / Genre / Area"
-                                value="{{ request()->input('search') }}"
-                            >
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-default">
-                                    <i class="fa fa-search"></i>
-                                </button>
+                    <div class="table-responsive">
+                        <form action="{{ route('restaurant.index') }}" method="get">
+                            <div class="search input-group col-md-3 float-right">
+                                <input
+                                    type="search" class="form-control" name="search" placeholder="Name / Genre / Area"
+                                    value="{{ request()->input('search') }}"
+                                >
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
 
-                    <table class="table table-hover text-nowrap">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Genre</th>
-                                <th>Area</th>
-                                <th>
-                                    @php
-                                        $sort_your_review = new App\Services\View\SortService($search, 'your_review');
-                                    @endphp
-                                    <a href="{{ route('restaurant.index', $sort_your_review->getSearch()) }}" style="color: #212529">
-                                        Your review
-                                        <span class="material-symbols-outlined">
-                                            {{ $sort_your_review->getGoogleFontName() }}
-                                        </span>
-                                    </a>
-                                </th>
-                                <th>
-                                    @php
-                                        $sort_google_review = new App\Services\View\SortService($search, 'google_review');
-                                    @endphp
-                                    <a href="{{ route('restaurant.index', $sort_google_review->getSearch()) }}" style="color: #212529">
-                                        Google's review
-                                        <span class="material-symbols-outlined">
-                                            {{ $sort_google_review->getGoogleFontName() }}
-                                        </span>
-                                    </a>
-                                </th>
-                                <th>Takeaway</th>
-                                <th>URL</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($restaurants as $item)
+                        <table class="table table-hover text-nowrap">
+                            <thead>
                                 <tr>
-                                    <td><a href="{{ route('restaurant.edit', $item->id) }}" style="color: black">{{ $item->name }}</a></td>
-                                    <td>{{ $item->genre }}</td>
-                                    <td>{{ $item->area }}</td>
-                                    <td>☆{{ number_format($item->user_review, 1) }}</td>
-                                    <td>☆{{ number_format($item->google_review, 1) }}</td>
-                                    <td>
-                                        @if ($item->takeaway_flag === App\Enums\TakeawayFlag::Possible->value)
+                                    <th>Name</th>
+                                    <th>Genre</th>
+                                    <th>Area</th>
+                                    <th>
+                                        @php
+                                            $sort_your_review = new App\Services\View\SortService($search, 'your_review');
+                                        @endphp
+                                        <a href="{{ route('restaurant.index', $sort_your_review->getSearch()) }}" style="color: #212529">
+                                            Your review
                                             <span class="material-symbols-outlined">
-                                                circle
+                                                {{ $sort_your_review->getGoogleFontName() }}
                                             </span>
-                                        @elseif ($item->takeaway_flag === App\Enums\TakeawayFlag::Impossible->value)
+                                        </a>
+                                    </th>
+                                    <th>
+                                        @php
+                                            $sort_google_review = new App\Services\View\SortService($search, 'google_review');
+                                        @endphp
+                                        <a href="{{ route('restaurant.index', $sort_google_review->getSearch()) }}" style="color: #212529">
+                                            Google's review
                                             <span class="material-symbols-outlined">
-                                                close
+                                                {{ $sort_google_review->getGoogleFontName() }}
                                             </span>
-                                        @else
-                                            <span class="material-symbols-outlined">
-                                                remove
-                                            </span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if ($item->url)
-                                            <a href="{{ $item->url }}" target="_blank" rel="noopener" style="color: black">
-                                                <i class="fa fa-link"></i>
-                                            </a>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <form action="{{ route('restaurant.destroy', $item->id) }}" method="post">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" onclick="return confirm('Are you sure to delete?')">
-                                                <i class="fa fa-trash" aria-hidden="true" style="color: mediumvioletred;"></i>
-                                            </button>
-                                        </form>
-                                    </td>
+                                        </a>
+                                    </th>
+                                    <th>Takeaway</th>
+                                    <th>URL</th>
+                                    <th>Delete</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody>
+                                @foreach ($restaurants as $item)
+                                    <tr>
+                                        <td><a href="{{ route('restaurant.edit', $item->id) }}" style="color: black">{{ $item->name }}</a></td>
+                                        <td>{{ $item->genre }}</td>
+                                        <td>{{ $item->area }}</td>
+                                        <td>☆{{ number_format($item->user_review, 1) }}</td>
+                                        <td>☆{{ number_format($item->google_review, 1) }}</td>
+                                        <td>
+                                            @if ($item->takeaway_flag === App\Enums\TakeawayFlag::Possible->value)
+                                                <span class="material-symbols-outlined">
+                                                    circle
+                                                </span>
+                                            @elseif ($item->takeaway_flag === App\Enums\TakeawayFlag::Impossible->value)
+                                                <span class="material-symbols-outlined">
+                                                    close
+                                                </span>
+                                            @else
+                                                <span class="material-symbols-outlined">
+                                                    remove
+                                                </span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($item->url)
+                                                <a href="{{ $item->url }}" target="_blank" rel="noopener" style="color: black">
+                                                    <i class="fa fa-link"></i>
+                                                </a>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('restaurant.destroy', $item->id) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" onclick="return confirm('Are you sure to delete?')">
+                                                    <i class="fa fa-trash" aria-hidden="true" style="color: mediumvioletred;"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 @endif
                 <div class="paginator">
                     <div class="result">Showing {{ $restaurants->firstItem() }} to {{ $restaurants->lastItem() }} of  {{ $restaurants->total() }} entries</div>
