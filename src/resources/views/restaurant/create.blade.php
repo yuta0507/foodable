@@ -77,21 +77,21 @@
                                 type="radio" name="takeaway_flag" value="{{ App\Enums\TakeawayFlag::Possible->value }}" id="possible"
                                 {{ (int) old('takeaway_flag') === App\Enums\TakeawayFlag::Possible->value ? 'checked' : '' }}
                             >
-                            <label for="possible">&nbsp;Possible</label>
+                            <label for="possible">&nbsp;{{ App\Enums\TakeawayFlag::Possible->label() }}</label>
                         </div>
                         <div class="custom-control custom-radio">
                             <input
                                 type="radio" name="takeaway_flag" value="{{ App\Enums\TakeawayFlag::Impossible->value }}" id="impossible"
                                 {{ (int) old('takeaway_flag') === App\Enums\TakeawayFlag::Impossible->value ? 'checked' : '' }}
                             >
-                            <label for="impossible">&nbsp;Impossible</label>
+                            <label for="impossible">&nbsp;{{ App\Enums\TakeawayFlag::Impossible->label() }}</label>
                         </div>
                         <div class="custom-control custom-radio">
                             <input
                                 type="radio" name="takeaway_flag" value="{{ App\Enums\TakeawayFlag::Missing->value }}" id="missing"
                                 {{ (int) old('takeaway_flag') === App\Enums\TakeawayFlag::Missing->value ? 'checked' : '' }}
                             >
-                            <label for="missing">&nbsp;I don't know</label>
+                            <label for="missing">&nbsp;{{ App\Enums\TakeawayFlag::Missing->label() }}</label>
                         </div>
                         @if ($errors->first('takeaway_flag'))
                             <span class="error">{{ $errors->first('takeaway_flag') }}</span>

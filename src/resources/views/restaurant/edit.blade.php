@@ -83,7 +83,7 @@
                                         {{ 'checked' }}
                                     @endif
                                 >
-                                <label for="possible">&nbsp;Possible</label>
+                                <label for="possible">&nbsp;{{ App\Enums\TakeawayFlag::Possible->label() }}</label>
                             </div>
                             <div class="custom-control custom-radio">
                                 <input
@@ -95,7 +95,7 @@
                                         {{ 'checked' }}
                                     @endif
                                 >
-                                <label for="impossible">&nbsp;Impossible</label>
+                                <label for="impossible">&nbsp;{{ App\Enums\TakeawayFlag::Impossible->label() }}</label>
                             </div>
                             <div class="custom-control custom-radio">
                                 <input
@@ -107,7 +107,7 @@
                                         {{ 'checked' }}
                                     @endif
                                 >
-                                <label for="missing">&nbsp;I don't know</label>
+                                <label for="missing">&nbsp;{{ App\Enums\TakeawayFlag::Missing->label() }}</label>
                             </div>
                             @if ($errors->first('takeaway_flag'))
                                 <span class="error">{{ $errors->first('takeaway_flag') }}</span>
