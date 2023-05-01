@@ -61,8 +61,8 @@
                                     <td><a href="{{ route('restaurant.edit', $item->id) }}" style="color: black">{{ $item->name }}</a></td>
                                     <td>{{ $item->genre }}</td>
                                     <td>{{ $item->area }}</td>
-                                    <td>☆{{ $item->user_review }}</td>
-                                    <td>☆{{ $item->google_review }}</td>
+                                    <td>☆{{ number_format($item->user_review, 1) }}</td>
+                                    <td>☆{{ number_format($item->google_review, 1) }}</td>
                                     <td>
                                         @if ($item->takeaway_flag === App\Enums\TakeawayFlag::Possible->value)
                                             <span class="material-symbols-outlined">
