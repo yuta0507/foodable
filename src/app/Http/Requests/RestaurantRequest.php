@@ -23,7 +23,7 @@ class RestaurantRequest extends FormRequest
             'user_review' => [new ReviewRule],
             'google_review' => [new ReviewRule],
             'takeaway_flag' => ['required', Rule::in(array_column(TakeawayFlag::cases(), 'value'))],
-            'url' => ['max:255'],
+            'url' => ['max:500'],
         ];
     }
 
