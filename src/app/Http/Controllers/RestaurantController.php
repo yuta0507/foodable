@@ -47,14 +47,13 @@ class RestaurantController extends Controller
             );
 
             DB::commit();
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             DB::rollBack();
             Log::error($e, ['request' => $request->all()]);
 
             return redirect()
                 ->route('restaurant.create')
-                ->with('internal_error', config('message.internal_error'))
+                ->with('alert', config('message.internal_error'))
                 ->withInput()
                 ;
         }
@@ -90,14 +89,13 @@ class RestaurantController extends Controller
             Restaurant::where('id', '=', $id)->update($request->validated());
 
             DB::commit();
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             DB::rollBack();
             Log::error($e, ['request' => $request->all()]);
 
             return redirect()
-                ->route('restaurant.edit')
-                ->with('internal_error', config('restaurants.internal_error'))
+                ->route('restaurant.edit', $id)
+                ->with('alert', config('message.internal_error'))
                 ->withInput()
                 ;
         }
@@ -126,7 +124,7 @@ class RestaurantController extends Controller
 
             return redirect()
                 ->route('restaurants.index')
-                ->with('internal_error', config('restaurants.internal_error'))
+                ->with('alert', config('restaurants.internal_error'))
                 ;
         }
 
