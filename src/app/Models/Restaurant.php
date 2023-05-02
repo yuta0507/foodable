@@ -23,6 +23,16 @@ class Restaurant extends Model
     ];
 
     /**
+     * Table relationship.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
      * Scope a query to fetch restaurants by user_id
      *
      * @param  \Illuminate\Database\Eloquent\Builder $query

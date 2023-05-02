@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -38,4 +37,28 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [];
+
+    /**
+     * Table relationship.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function restaurants()
+    {
+        return $this->hasMany(Restaurant::class);
+    }
+
+    /**
+     * Delete related restaurants when deleting a user.
+     *
+     * @return void
+     */
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        self::deleting(function ($user) {
+            $user->restaurants()->delete();
+        });
+    }
 }

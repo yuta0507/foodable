@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 
 class ProfileController extends Controller
@@ -30,7 +32,21 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request)
     {
-        $request->user()->update($request->validated());
+        try {
+            DB::beginTransaction();
+
+            $request->user()->update($request->validated());
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e, ['request' => $request->all()]);
+
+            return Redirect::route('profile.edit')
+                ->with('alert', config('message.internal_error'))
+                ->withInput()
+                ;
+        }
 
         return Redirect::route('profile.edit')
             ->with('message', config('message.update.success'))
@@ -53,11 +69,24 @@ class ProfileController extends Controller
 
         Auth::logout();
 
-        $user->delete();
+        try {
+            DB::beginTransaction();
+
+            $user->delete();
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e, ['request' => $request->all()]);
+
+            return Redirect::route('login')
+                ->with('alert', config('message.internal_error'))
+                ;
+        }
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('/');
+        return Redirect::route('login');
     }
 }
