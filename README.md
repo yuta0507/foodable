@@ -5,7 +5,7 @@ A web application which can manage your favorite restaurants, food shops and caf
 - PHP8.1
 - Laravel9
 - MySQL8
-- Nginx
+- Apache2.4
 
 # How to build
 ## Prepare for building the database

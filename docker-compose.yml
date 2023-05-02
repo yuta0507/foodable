@@ -13,18 +13,7 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - mysql
-
-  # web:
-  #   build:
-  #     context: .
-  #     dockerfile: ./docker/nginx/Dockerfile
-  #   ports:
-  #     - 80:80
-  #   depends_on:
-  #     - app
-  #   volumes:
-  #     - ./src/:/var/www/html
+      - db
 
   db:
     build:
