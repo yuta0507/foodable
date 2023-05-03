@@ -5,6 +5,9 @@ namespace Tests\Unit\Services\View;
 use App\Services\View\SortService;
 use Tests\TestCase;
 
+/**
+ * @see App\Services\View\SortService.php
+ */
 class SortServiceTest extends TestCase
 {
     /**

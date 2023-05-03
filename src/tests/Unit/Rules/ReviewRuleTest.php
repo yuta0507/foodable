@@ -5,6 +5,9 @@ namespace Tests\Unit\Rules;
 use App\Rules\ReviewRule;
 use Tests\TestCase;
 
+/**
+ * @see App\Rules\ReviewRule.php
+ */
 class ReviewRuleTest extends TestCase
 {
     /**

@@ -4,6 +4,8 @@ namespace App\Services\View;
 
 /**
  * A service to get the view elements when it is sorted
+ *
+ * @see Tests\Unit\Services\View\SortServiceTest.php
  */
 class SortService
 {
