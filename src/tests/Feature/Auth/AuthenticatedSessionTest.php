@@ -26,19 +26,6 @@ class AuthenticatedSessionTest extends TestCase
     }
 
     /**
-     * Test case in access the home page without login.
-     */
-    public function testAccessHomeByGuest()
-    {
-        $response = $this->get('/');
-
-        $response->assertStatus(Response::HTTP_FOUND);
-        $response->assertRedirect('/login');
-
-        $this->assertGuest();
-    }
-
-    /**
      * Test the login process.
      */
     public function testLogin()
@@ -68,5 +55,33 @@ class AuthenticatedSessionTest extends TestCase
         $response->assertStatus(Response::HTTP_FOUND);
         $response->assertRedirect('/login');
         $this->assertGuest();
+    }
+
+    /**
+     * Test case in access the home page without login.
+     */
+    public function testAccessHomeByGuest()
+    {
+        $response = $this->get('/');
+
+        $response->assertStatus(Response::HTTP_FOUND);
+        $response->assertRedirect('/login');
+
+        $this->assertGuest();
+    }
+
+    /**
+     * Test case in access the login page by logged in user.
+     */
+    public function testAccessLoginPageByAuthenticatedUser()
+    {
+        $this->login();
+
+        $this->assertAuthenticatedAs($this->getLoginUser());
+
+        $response = $this->get('/login');
+
+        $response->assertStatus(Response::HTTP_FOUND);
+        $response->assertRedirect(RouteServiceProvider::HOME);
     }
 }
