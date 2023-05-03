@@ -23,6 +23,7 @@ class ReviewRule implements Rule
      * @param  mixed  $value
      * @return bool
      * @link http://pgcafe.moo.jp/Regex/main_4.htm
+     * @see Tests\Unit\Rules\ReviewRuleTest.php
      */
     public function passes($attribute, $value)
     {
