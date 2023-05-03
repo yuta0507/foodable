@@ -32,8 +32,8 @@ class AuthenticatedSessionTest extends TestCase
     {
         $response = $this->get('/');
 
-        $response->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect('/login');
+        $response->assertStatus(Response::HTTP_FOUND);
+        $response->assertRedirect('/login');
 
         $this->assertGuest();
     }

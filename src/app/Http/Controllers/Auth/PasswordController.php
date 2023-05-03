@@ -36,9 +36,15 @@ class PasswordController extends Controller
             DB::rollBack();
             Log::error($e, ['request' => $request->all()]);
 
-            return back()->with('alert', config('message.internal_error'));
+            return redirect()
+                ->route('profile.edit')
+                ->with('alert', config('message.internal_error'))
+                ;
         }
 
-        return back()->with('message', config('message.update.success'));
+        return redirect()
+            ->route('profile.edit')
+            ->with('message', config('message.update.success'))
+            ;
     }
 }
