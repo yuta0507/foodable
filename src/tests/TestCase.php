@@ -4,6 +4,7 @@ namespace Tests;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Support\Facades\Hash;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -16,7 +17,9 @@ abstract class TestCase extends BaseTestCase
      */
     public function login()
     {
-        $this->loginUser = User::factory()->create();
+        $this->loginUser = User::factory()->create([
+            'password' => Hash::make($this->getPassword()),
+        ]);
 
         return $this->actingAs($this->loginUser);
     }
@@ -29,5 +32,15 @@ abstract class TestCase extends BaseTestCase
     protected function getLoginUser(): User
     {
         return $this->loginUser;
+    }
+
+    /**
+     * Get test user's password
+     *
+     * @return string
+     */
+    protected function getPassword(): string
+    {
+        return 'test1234';
     }
 }
