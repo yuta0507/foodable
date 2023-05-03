@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Controllers\Auth;
+namespace Tests\Feature\Auth;
 
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -9,14 +9,14 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
-class AuthenticatedSessionControllerTest extends TestCase
+class AuthenticatedSessionTest extends TestCase
 {
     use DatabaseMigrations;
 
     /**
      * Test to view the login page.
      */
-    public function testCreate()
+    public function testShowLoginPage()
     {
         $response = $this->get('/login');
 
@@ -41,7 +41,7 @@ class AuthenticatedSessionControllerTest extends TestCase
     /**
      * Test the login process.
      */
-    public function testStore()
+    public function testLogin()
     {
         $this->assertGuest();
 
@@ -57,7 +57,7 @@ class AuthenticatedSessionControllerTest extends TestCase
     /**
      * Test the logout precess.
      */
-    public function testDestroy()
+    public function testLogout()
     {
         $this->login();
 
