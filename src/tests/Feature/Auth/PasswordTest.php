@@ -12,7 +12,7 @@ class PasswordTest extends TestCase
     use DatabaseMigrations;
 
     /**
-     * Test to update password successfully
+     * Test to update the password
      */
     public function testUpdate()
     {
