@@ -59,7 +59,7 @@ class RestaurantController extends Controller
         }
 
         return redirect()
-            ->route('restaurants.index')
+            ->route('restaurant.index')
             ->with('message', config('message.store.success'))
             ;
     }
@@ -101,7 +101,7 @@ class RestaurantController extends Controller
         }
 
         return redirect()
-            ->route('restaurants.index')
+            ->route('restaurant.index')
             ->with('message', config('message.update.success'));
             ;
     }
@@ -123,11 +123,11 @@ class RestaurantController extends Controller
             Log::error($e, ['request' => $request->all()]);
 
             return redirect()
-                ->route('restaurants.index')
+                ->route('restaurant.index')
                 ->with('alert', config('restaurants.internal_error'))
                 ;
         }
 
-        return redirect()->route('restaurants.index');
+        return redirect()->route('restaurant.index');
     }
 }
