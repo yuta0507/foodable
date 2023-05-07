@@ -30,7 +30,7 @@ class RegisteredUserTest extends TestCase
     {
         $password = '1234567890';
 
-        $registration = [
+        $data = [
             'name' => 'Test User',
             'email' => 'test@example.com',
         ];
@@ -38,7 +38,7 @@ class RegisteredUserTest extends TestCase
         $response = $this->post(
             route('register'),
             array_merge(
-                $registration,
+                $data,
                 [
                     'password' => $password,
                     'password_confirmation' => $password,
@@ -49,6 +49,6 @@ class RegisteredUserTest extends TestCase
         $response->assertStatus(Response::HTTP_FOUND);
         $response->assertRedirect(RouteServiceProvider::HOME);
 
-        $this->assertDatabaseHas('users', $registration);
+        $this->assertDatabaseHas('users', $data);
     }
 }
