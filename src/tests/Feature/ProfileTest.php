@@ -50,7 +50,7 @@ class ProfileTest extends TestCase
     /**
      * Test to delete the user
      */
-    public function testDestroy()
+    public function testDelete()
     {
         $this->login();
 
