@@ -15,7 +15,7 @@ cp .env.sample .env
 ```
 2. Set user & password
 ## Build the docker container
-*If the make commands do not work, please run related commands in MAKEFILE.
+*If the make commands below do not work, please run related commands in MAKEFILE.
 1. Build containers
 ```bash
 make init
