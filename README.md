@@ -32,3 +32,6 @@ make migrate
 ```bash
 docker compose exec app php artisan migrate --database=testing
 ```
+5. Open the Login screen
+http://localhost:8080/login
+![Alt text](login.png)
