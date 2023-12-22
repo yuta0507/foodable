@@ -5,7 +5,7 @@
 @section('content')
     <div class="login-box">
         <div class="login-logo">
-            <img src="{{ asset('vendor/adminlte/dist/img/AdminLTELogo.png') }}" alt="Foodable logo" height="50" />
+            <img src="{{ asset('icon.png') }}" alt="Foodable logo" height="50" />
             <b>Foodable</b>
         </div>
 
