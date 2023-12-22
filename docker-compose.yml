@@ -33,7 +33,7 @@ services:
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-      TZ: 'Asia/Tokyo'
+      TZ: 'Australia/Sydney'
     volumes:
       - mysql-volume:/var/lib/mysql
       - ./schema:/var/tmp
